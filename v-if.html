@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+
+</head>
+<body>
+    <div id="root">
+        <div v-if="this.state">
+            <label>用户：</label>
+            <input type="text" placeholder="请输入用户名" key="userInput">
+        </div>
+        <div v-else>
+            <label>邮箱：</label>
+            <input type="text" placeholder="请输入邮箱名" key="emailInput">
+        </div>
+        <button @click="handleClick">toggle</button>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el:"#root",
+            data:{msg:"Hello",
+            state:true
+            },
+            methods:{
+                // handleClick:()=>this.state=!(this.state)
+                handleClick:function () {
+                    this.state=!(this.state);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

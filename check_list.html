@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <style>
+        li {
+            list-style: none;
+        }
+        p {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <ul>
+            <child v-for="item in arr1" :msg="item.txt" key="item.id"></child>
+            <hr>
+
+        </ul>
+        <ul>
+            <child v-for="item in arr2" :msg="item.txt" key="item.id"></child>
+        </ul>
+        <button @click="handleClick">click</button>
+    </div>
+    <script>
+        Vue.component("child",{
+            props:["msg"],
+            template:`
+                <li>
+                <input type="checkbox" name="" id="">
+                <p>{{msg}}</p>
+                </li>
+            `
+        })
+        let vm = new Vue({
+            el:"#root",
+            data:{arr1:[{txt:"1",id:0},{txt:"2",id:1}],
+                arr2:[{txt:"one",id:2},{txt:"two",id:3}]
+            },
+            methods:{
+                handleClick:function () {
+                    this.arr2.push(this.arr1[0]);
+                    this.arr1.splice(0,1);
+                }
+            }
+        })
+    </script>
+</body>
+</html>
